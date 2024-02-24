@@ -43,6 +43,7 @@ ls -la "$CLONE_DIRECTORY"
 
 echo
 echo "##### Delete Existing Directory Contents in Detination Directory #####"
+echo "$CLONE_DIRECTORY/$SOURCE_FILES"
 if [ -d "$CLONE_DIRECTORY/$SOURCE_FILES" ]; then
   rm -rf "$CLONE_DIRECTORY/$SOURCE_FILES"
 fi
