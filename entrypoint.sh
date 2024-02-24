@@ -42,6 +42,12 @@ git clone --single-branch --branch "$DESTINATION_BRANCH" "https://$API_TOKEN_GIT
 ls -la "$CLONE_DIRECTORY"
 
 echo
+echo "##### Delete Existing Directory Contents in Detination Directory #####"
+if [ -d "$CLONE_DIRECTORY/$SOURCE_FILES" ]; then
+  rm -rf "$CLONE_DIRECTORY/$SOURCE_FILES"
+fi
+
+echo
 echo "##### Copying contents to git repo #####"
 mkdir -p "$CLONE_DIRECTORY/$DESTINATION_DIRECTORY"
 cp -rvf $SOURCE_FILES "$CLONE_DIRECTORY/$DESTINATION_DIRECTORY"
