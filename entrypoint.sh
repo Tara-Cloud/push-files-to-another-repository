@@ -33,33 +33,33 @@ rm -rf .git
 git clone "https://github.com/$GITHUB_REPOSITORY.git" repo
 
 cd repo
+echo "listing files in source repo"
 ls -la
 
-# echo
-# echo "##### Cloning destination git repository #####"
+echo "##### Cloning destination git repository #####"
 
-# git clone --single-branch --branch "$DESTINATION_BRANCH" "https://$API_TOKEN_GITHUB@github.com/$DESTINATION_USERNAME/$DESTINATION_REPOSITORY.git" "$CLONE_DIRECTORY"
-# ls -la "$CLONE_DIRECTORY"
+git clone --single-branch --branch "$DESTINATION_BRANCH" "https://$API_TOKEN_GITHUB@github.com/$DESTINATION_USERNAME/$DESTINATION_REPOSITORY.git" "$CLONE_DIRECTORY"
+ls -la "$CLONE_DIRECTORY"
 
-# echo
-# echo "##### Copying contents to git repo #####"
-# mkdir -p "$CLONE_DIRECTORY/$DESTINATION_DIRECTORY"
-# cp -rvf $SOURCE_FILES "$CLONE_DIRECTORY/$DESTINATION_DIRECTORY"
-# cd "$CLONE_DIRECTORY"
+echo
+echo "##### Copying contents to git repo #####"
+mkdir -p "$CLONE_DIRECTORY/$DESTINATION_DIRECTORY"
+cp -rvf $SOURCE_FILES "$CLONE_DIRECTORY/$DESTINATION_DIRECTORY"
+cd "$CLONE_DIRECTORY"
 
-# echo
-# echo "##### Adding git commit #####"
+echo
+echo "##### Adding git commit #####"
 
-# ORIGIN_COMMIT="https://github.com/$GITHUB_REPOSITORY/commit/$GITHUB_SHA"
-# COMMIT_MESSAGE="${COMMIT_MESSAGE/ORIGIN_COMMIT/$ORIGIN_COMMIT}"
+ORIGIN_COMMIT="https://github.com/$GITHUB_REPOSITORY/commit/$GITHUB_SHA"
+COMMIT_MESSAGE="${COMMIT_MESSAGE/ORIGIN_COMMIT/$ORIGIN_COMMIT}"
 
-# git add .
-# git status
+git add .
+git status
 
-# # don't commit if no changes were made
-# git diff-index --quiet HEAD || git commit --message "$COMMIT_MESSAGE"
+# don't commit if no changes were made
+git diff-index --quiet HEAD || git commit --message "$COMMIT_MESSAGE"
 
-# echo
-# echo "##### Pushing git commit #####"
-# # --set-upstream: sets the branch when pushing to a branch that does not exist
-# git push origin --set-upstream "$DESTINATION_BRANCH"
+echo
+echo "##### Pushing git commit #####"
+# --set-upstream: sets the branch when pushing to a branch that does not exist
+git push origin --set-upstream "$DESTINATION_BRANCH"
